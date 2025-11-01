@@ -9,7 +9,9 @@ environment:
 
 dependencies:
   agentiq:
-    path: ../../agentiq
+    # path: ../../agentiq
+    git:
+      url: https://github.com/rajajanarthanan/agentiq.git
   
   flutter:
     sdk: flutter

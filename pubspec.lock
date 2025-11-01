@@ -20,9 +20,11 @@ packages:
   agentiq:
     dependency: "direct main"
     description:
-      path: "../../agentiq"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "3fd2407c00e3cfce7d8b26fd2ca75d1972d9c2c9"
+      url: "https://github.com/rajajanarthanan/agentiq.git"
+    source: git
     version: "0.0.1"
   analyzer:
     dependency: transitive
