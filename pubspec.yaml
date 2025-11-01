@@ -1,0 +1,60 @@
+name: codefarms_core
+description: "Commons for CodeFarms apps."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  agentiq:
+    path: ../../agentiq
+  
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.1.0
+  cupertino_icons:
+  flutter_svg:
+  go_router: 
+  flutter_bloc:
+  injectable:
+  get_it:
+  freezed_annotation:
+  bloc:
+  convex_bottom_bar:
+  cloud_firestore: 
+  firebase_storage: 
+  firebase_auth: 
+  firebase_core: 
+  cloud_functions: 
+  mockito: 
+  google_sign_in: 
+  dartz: 
+  meta: 
+  dio: 
+  equatable: 
+  google_nav_bar:
+  firebase_app_check:
+  json_serializable:
+  google_sign_in_platform_interface:
+  flutter_dotenv: ^6.0.0
+  
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+  freezed:
+  build_runner:
+  injectable_generator:
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+    - assets/logos/
+    - assets/.env
+
