@@ -3,7 +3,6 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show TargetPlatform, defaultTargetPlatform, kIsWeb;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
 
@@ -11,17 +10,25 @@ final GoogleSignInPlatform googleSignInPlatform = GoogleSignInPlatform.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn.instance;
 
 class CodeFarmsFirebaseOptions {
-  static String get projectId => dotenv.env['FIREBASE_PROJECT_ID'] ?? '';
+  final String projectId;
+  final String region;
+  final String googleSignInClientId;
+  final String serverClientId;
+  final FirebaseOptions web;
+  final FirebaseOptions android;
+  final FirebaseOptions ios;
 
-  static String get region => dotenv.env['FIREBASE_REGION'] ?? '';
+  CodeFarmsFirebaseOptions({
+    required this.projectId,
+    required this.region,
+    required this.googleSignInClientId,
+    required this.serverClientId,
+    required this.web,
+    required this.android,
+    required this.ios,
+  });
 
-  static String get googleSignInClientId =>
-      dotenv.env['GOOGLE_SIGN_IN_CLIENT_ID'] ?? '';
-
-  static String get serverClientId =>
-      dotenv.env['GOOGLE_SERVER_CLIENT_ID'] ?? '';
-
-  static FirebaseOptions get currentPlatform {
+  FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       return web;
     }
@@ -51,34 +58,4 @@ class CodeFarmsFirebaseOptions {
         );
     }
   }
-
-  static FirebaseOptions get web => FirebaseOptions(
-    apiKey: dotenv.env['FIREBASE_WEB_API_KEY'] ?? '',
-    appId: dotenv.env['FIREBASE_WEB_APP_ID'] ?? '',
-    messagingSenderId: dotenv.env['FIREBASE_WEB_MESSAGING_SENDER_ID'] ?? '',
-    projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
-    authDomain: dotenv.env['FIREBASE_WEB_AUTH_DOMAIN'] ?? '',
-    storageBucket: dotenv.env['FIREBASE_WEB_STORAGE_BUCKET'] ?? '',
-    measurementId: dotenv.env['FIREBASE_WEB_MEASUREMENT_ID'] ?? '',
-  );
-
-  static FirebaseOptions get android => FirebaseOptions(
-    apiKey: dotenv.env['FIREBASE_ANDROID_API_KEY'] ?? '',
-    appId: dotenv.env['FIREBASE_ANDROID_APP_ID'] ?? '',
-    messagingSenderId: dotenv.env['FIREBASE_ANDROID_MESSAGING_SENDER_ID'] ?? '',
-    projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
-    storageBucket: dotenv.env['FIREBASE_ANDROID_STORAGE_BUCKET'] ?? '',
-    androidClientId: dotenv.env['FIREBASE_ANDROID_CLIENT_ID'] ?? '',
-  );
-
-  static FirebaseOptions get ios => FirebaseOptions(
-    apiKey: dotenv.env['FIREBASE_IOS_API_KEY'] ?? '',
-    appId: dotenv.env['FIREBASE_IOS_APP_ID'] ?? '',
-    messagingSenderId: dotenv.env['FIREBASE_IOS_MESSAGING_SENDER_ID'] ?? '',
-    projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
-    storageBucket: dotenv.env['FIREBASE_IOS_STORAGE_BUCKET'] ?? '',
-    androidClientId: dotenv.env['FIREBASE_IOS_ANDROID_CLIENT_ID'] ?? '',
-    iosClientId: dotenv.env['FIREBASE_IOS_CLIENT_ID'] ?? '',
-    iosBundleId: dotenv.env['FIREBASE_IOS_BUNDLE_ID'] ?? '',
-  );
 }

@@ -118,10 +118,13 @@ class ApiEndPoints {
   /// returns List<PublicProfileEntity>
   static const String getPublicProfiles = 'getPublicProfiles';
 
-  static String getFunctionUrl(String functionName) {
+  static String getFunctionUrl(
+    String functionName,
+    CodeFarmsFirebaseOptions options,
+  ) {
     return isFirebaseEmulatorsInUse
-        ? "http://127.0.0.1:$functionsEmulatorPort/${CodeFarmsFirebaseOptions.projectId}/${CodeFarmsFirebaseOptions.region}/$functionName"
-        : "https://${CodeFarmsFirebaseOptions.region}-${CodeFarmsFirebaseOptions.projectId}.cloudfunctions.net/$functionName";
+        ? "http://127.0.0.1:$functionsEmulatorPort/${options.projectId}/${options.region}/$functionName"
+        : "https://${options.region}-${options.projectId}.cloudfunctions.net/$functionName";
   }
 
   static String uploadAbi = 'uploadAbi';

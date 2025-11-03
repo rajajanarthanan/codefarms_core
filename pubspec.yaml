@@ -40,7 +40,6 @@ dependencies:
   firebase_app_check:
   json_serializable:
   google_sign_in_platform_interface:
-  flutter_dotenv: ^6.0.0
   
   
 
@@ -58,5 +57,4 @@ flutter:
     - assets/
     - assets/images/
     - assets/logos/
-    - assets/.env
 

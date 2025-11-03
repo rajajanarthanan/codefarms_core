@@ -20,13 +20,14 @@ import 'package:google_sign_in_platform_interface/google_sign_in_platform_interf
 bool firebaseEmulatorsInUse = false;
 bool get isFirebaseEmulatorsInUse => firebaseEmulatorsInUse;
 
-Future<void> initFirebaseApp({bool shouldUseEmulators = false}) async {
+Future<void> initFirebaseApp({
+  required CodeFarmsFirebaseOptions options,
+  bool shouldUseEmulators = false,
+}) async {
   try {
     // if (Firebase.apps.isEmpty) {
     /// load firebase options for the respective project
-    await Firebase.initializeApp(
-      options: CodeFarmsFirebaseOptions.currentPlatform,
-    );
+    await Firebase.initializeApp(options: options.currentPlatform);
     // }
     if (!kIsWeb) {
       if (Platform.isAndroid) {
@@ -52,12 +53,10 @@ Future<void> initFirebaseApp({bool shouldUseEmulators = false}) async {
 
     if (kIsWeb) {
       await googleSignInPlatform.init(
-        InitParameters(clientId: CodeFarmsFirebaseOptions.googleSignInClientId),
+        InitParameters(clientId: options.googleSignInClientId),
       );
 
-      await googleSignIn.initialize(
-        clientId: CodeFarmsFirebaseOptions.googleSignInClientId,
-      );
+      await googleSignIn.initialize(clientId: options.googleSignInClientId);
     } else {
       if (Platform.isAndroid) {
         await googleSignInPlatform.init(const InitParameters());
